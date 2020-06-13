@@ -13,7 +13,7 @@ const Currency = mongoose.Types.Currency;
     },
     label: {
         type: String,
-        required: true
+        default: ''
     },
     price: {
         type: Currency,

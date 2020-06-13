@@ -13,7 +13,7 @@ promoRouter.route('/')
     Promos.find({})
     .then((promos) => {
         res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/plain');
+        res.setHeader('Content-Type', 'application/json');
         res.json(promos);
     },(err) => next(err))
     .catch((err)=> next(err))
@@ -23,7 +23,7 @@ promoRouter.route('/')
     .then((promo) => {
         console.log('Promo Created' + promo);
         res.statusCode = 200;
-        res.setHeader('Content-type', 'text/plain');
+        res.setHeader('Content-type', 'application/json');
         res.json(promo)
     }, (err) => next(err))
     .catch((err) => next(err));
@@ -36,7 +36,7 @@ promoRouter.route('/')
     Promos.deleteMany({})
     .then((resp) => {
         res.statusCode = 200;
-        res.setHeader('Content-type', 'text/plain');
+        res.setHeader('Content-type', 'application/json');
         res.json(resp);
     }, (err) => next(err))
     .catch((err) => next(err))
@@ -47,7 +47,7 @@ promoRouter.route('/:promoId')
     Promos.findById(req.params.promoId)
     .then((promo) => { 
         res.statusCode = 200;
-        res.setHeader('Content-type', 'text/plain');
+        res.setHeader('Content-type', 'application/json');
         res.json(promo);
     },(err) => next(err))
     .catch((err) => next(err))
@@ -61,7 +61,7 @@ promoRouter.route('/:promoId')
     }, { new: true })
     .then((promo) => {
         res.statusCode = 200;
-        res.setHeader('Content-type', 'tex/plain');
+        res.setHeader('Content-type', 'application/json');
         res.json(promo);
     }, (err) => next(err))
     .catch((err) => next(err))
@@ -70,7 +70,7 @@ promoRouter.route('/:promoId')
     Promos.findByIdAndDelete(req.params.promoId)
     .then((resp) => {
         res.statusCode = 200;
-        res.setHeader('Content-type', 'tex/plain');
+        res.setHeader('Content-type', 'application/json');
         res.json(resp);
     }, (err) => next(err))
     .catch((err) => next(err))
