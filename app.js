@@ -45,7 +45,7 @@ app.use(session({
 }));
 
 function auth(req, res, next) {
-  console.log(req.session.user);
+  console.log(req.session);
 
   if(!req.session.user) {
   //if(!req.signedCookies.user) {
