@@ -51,7 +51,7 @@ dishRouter.route('/')
 dishRouter.route('/:dishId')
 .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
 .get(cors.cors, (req, res, next) => {
-    Dishes.findById(req.params.dishId)
+    Dishes.find(req.params.dishId)
     .populate('comments.author')
     .then((dish) => {
         res.statusCode = 200;
@@ -188,7 +188,7 @@ dishRouter.route('/:dishId/comments/:commentId')
 .put(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
     Dishes.findById(req.params.dishId)
     .then((dish) => {
-        if(!req.user._id.equals(dish.comments.author)){
+        if(!req.user._id.equals(dish.comments.id(req.params.commentId).author)){
             var err = new Error("you are not authorized to delete this comment");
             err.status = 403;
             return next(err);
@@ -227,7 +227,7 @@ dishRouter.route('/:dishId/comments/:commentId')
 .delete(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
     Dishes.findById(req.params.dishId)
     .then((dish) => {
-        if(!req.user._id.equals(dish.comments.author)){
+        if(!(req.user._id).equals(dish.comments.id(req.params.commentId).author)){
             var err = new Error("you are not authorized to delete this comment");
             err.status = 403;
             return next(err);

@@ -16,11 +16,14 @@ var dishRouter = require('./routes/dishRouter');
 var promoRouter = require('./routes/promoRouter');
 var leaderRouter = require('./routes/leaderRouter');
 var uploadRouter = require('./routes/uploadRouter');
+var favouriteRouter = require('./routes/favouriteRouter');
 
 const mongoose = require('mongoose');
 const Dishes = require('./models/dishes');
 const Promos = require('./models/promotions');
 const Leaders = require('./models/leaders');
+const Favourites = require('./models/favourite') 
+
 
 const url = config.mongoUrl;
 const connect = mongoose.connect(url);
@@ -59,6 +62,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/dishes', dishRouter);
 app.use('/promotions', promoRouter);
 app.use('/leaders', leaderRouter);
+app.use('/favourites', favouriteRouter)
 app.use('/imageUpload', uploadRouter);
 
 
